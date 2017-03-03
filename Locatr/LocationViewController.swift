@@ -19,16 +19,17 @@ class LocationViewController: UIViewController {
     @IBOutlet weak var currentLocationSwitch: UISwitch!
     @IBOutlet weak var addressField: UITextField!
     
+    
+    // Location properties
     var locationManager = CLLocationManager()
     let latDelta: CLLocationDegrees = 0.05
     let lonDelta: CLLocationDegrees = 0.05
     var latitude: CLLocationDegrees?
     var longitude: CLLocationDegrees?
-    
     var address: String?
-    
     var locationMarker: GMSMarker!
     
+    let startingCoordinate = CLLocationCoordinate2D(latitude: 29.76, longitude: -95.37)
     
     // Variables and constants
     
@@ -40,6 +41,7 @@ class LocationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureViews()
 
     }
     
@@ -48,14 +50,24 @@ class LocationViewController: UIViewController {
     
     func configureViews() {
         addressField.isHidden = currentLocationSwitch.isOn ? true : false
-
+        
+        configureMap()
     }
     
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func configureMap() {
+        
+        let camera = GMSCameraPosition.camera(withTarget: startingCoordinate, zoom: 12)
+        mapView.camera = camera
+        
+        mapView.addObserver(self, forKeyPath: "myLocation", options: .new, context: nil)
+        
+        // Create and add location pin
+        let marker = GMSMarker()
+        marker.appearAnimation = .pop
+        marker.position = startingCoordinate
+        marker.map = mapView
     }
+    
     
 
 }
