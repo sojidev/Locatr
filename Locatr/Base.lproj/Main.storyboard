@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -173,10 +174,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-E6-DtN">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P6E-Eo-1cK">
+                                    <switch opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="P6E-Eo-1cK">
                                         <rect key="frame" x="299" y="37" width="51" height="31"/>
+                                        <color key="tintColor" red="0.7157845223" green="0.056446971950000001" blue="0.11553237719999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <action selector="currentLocationSwitchToggled:" destination="218-xd-lmL" eventType="valueChanged" id="eoU-at-p2O"/>
+                                        </connections>
                                     </switch>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJ6-nu-z8t">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qJ6-nu-z8t" userLabel="YesOrNoLabel">
                                         <rect key="frame" x="233" y="37" width="49" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="31" id="b2S-ld-fZ6"/>
@@ -196,8 +201,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xul-Oh-P4S">
-                                        <rect key="frame" x="15" y="85" width="345" height="35"/>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please enter an address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xul-Oh-P4S">
+                                        <rect key="frame" x="21" y="85" width="333" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="bkq-qC-Q1E"/>
@@ -205,7 +210,25 @@
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="218-xd-lmL" id="1OM-fT-dYe"/>
+                                        </connections>
                                     </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8p6-NJ-bog">
+                                        <rect key="frame" x="119" y="128" width="137" height="34"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="3dE-h2-Ded"/>
+                                            <constraint firstAttribute="width" constant="137" id="azR-kg-sfM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                        <state key="normal" title="SHOW LOCATION">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showLocationButtonPressed:" destination="218-xd-lmL" eventType="touchUpInside" id="rrW-gg-QiG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.245945936" green="0.43979151519999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -214,11 +237,10 @@
                                     <constraint firstAttribute="trailing" secondItem="P6E-Eo-1cK" secondAttribute="trailing" constant="27" id="Fqq-2V-OZU"/>
                                     <constraint firstItem="qJ6-nu-z8t" firstAttribute="centerY" secondItem="P6E-Eo-1cK" secondAttribute="centerY" id="Gbd-HX-AbQ"/>
                                     <constraint firstItem="6uo-Aj-yCS" firstAttribute="top" secondItem="XQy-E6-DtN" secondAttribute="top" constant="36" id="K05-E0-06S"/>
-                                    <constraint firstItem="xul-Oh-P4S" firstAttribute="leading" secondItem="XQy-E6-DtN" secondAttribute="leading" constant="15" id="QqP-Pk-R6T"/>
                                     <constraint firstItem="P6E-Eo-1cK" firstAttribute="leading" secondItem="qJ6-nu-z8t" secondAttribute="trailing" constant="17" id="RQp-Fc-qUd"/>
                                     <constraint firstItem="xul-Oh-P4S" firstAttribute="top" secondItem="6uo-Aj-yCS" secondAttribute="bottom" constant="17" id="Xtr-zy-on0"/>
                                     <constraint firstItem="P6E-Eo-1cK" firstAttribute="top" secondItem="XQy-E6-DtN" secondAttribute="top" constant="37" id="c3n-JM-gef"/>
-                                    <constraint firstAttribute="trailing" secondItem="xul-Oh-P4S" secondAttribute="trailing" constant="15" id="uX9-N9-ALb"/>
+                                    <constraint firstItem="8p6-NJ-bog" firstAttribute="top" secondItem="xul-Oh-P4S" secondAttribute="bottom" constant="8" id="rTz-79-R01"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -228,15 +250,21 @@
                             <constraint firstItem="GR3-oW-T6w" firstAttribute="top" secondItem="5dM-ub-lGy" secondAttribute="bottom" id="5uK-ez-iRj"/>
                             <constraint firstItem="XQy-E6-DtN" firstAttribute="leading" secondItem="gfe-rO-fsq" secondAttribute="leading" id="C4v-w8-dkB"/>
                             <constraint firstItem="XQy-E6-DtN" firstAttribute="top" secondItem="gfe-rO-fsq" secondAttribute="top" id="Cb0-7Q-7vw"/>
+                            <constraint firstItem="xul-Oh-P4S" firstAttribute="width" secondItem="gfe-rO-fsq" secondAttribute="width" multiplier="0.888" id="Eab-FC-imu"/>
                             <constraint firstItem="5dM-ub-lGy" firstAttribute="leading" secondItem="gfe-rO-fsq" secondAttribute="leading" id="LJy-Ab-EZU"/>
                             <constraint firstAttribute="trailing" secondItem="5dM-ub-lGy" secondAttribute="trailing" id="iuM-pr-wE8"/>
+                            <constraint firstItem="xul-Oh-P4S" firstAttribute="centerX" secondItem="gfe-rO-fsq" secondAttribute="centerX" id="oAj-jh-dfJ"/>
                             <constraint firstAttribute="trailing" secondItem="XQy-E6-DtN" secondAttribute="trailing" id="okA-qe-trl"/>
+                            <constraint firstItem="8p6-NJ-bog" firstAttribute="centerX" secondItem="gfe-rO-fsq" secondAttribute="centerX" id="z0L-pv-dof"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="addressField" destination="xul-Oh-P4S" id="tuB-hh-MTd"/>
+                        <outlet property="addressFieldCenterX" destination="oAj-jh-dfJ" id="9cx-4d-rtL"/>
                         <outlet property="currentLocationSwitch" destination="P6E-Eo-1cK" id="OBf-vI-D7i"/>
                         <outlet property="mapView" destination="YWN-cU-EV4" id="3E5-ts-xw7"/>
+                        <outlet property="showLocationButton" destination="8p6-NJ-bog" id="kSl-9E-WHB"/>
+                        <outlet property="yesOrNoLabel" destination="qJ6-nu-z8t" id="kGZ-qa-2AM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xyd-SW-djC" userLabel="First Responder" sceneMemberID="firstResponder"/>

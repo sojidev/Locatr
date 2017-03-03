@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+// MARK: - UIColor extensions
+
 extension UIColor {
     
     convenience init(hexString: String) {
@@ -31,4 +34,33 @@ extension UIColor {
     }
     
 }
+
+
+// MARK: - UITExtField extensions
+
+extension UITextField {
+    
+    func hide() {
+        self.isHidden = false
+        self.alpha = 1
+        
+        UIView.animate(withDuration: 0.25) { 
+            self.alpha = 0
+            self.isHidden = false
+        }
+    }
+    
+    func show() {
+        self.isHidden = true
+        self.alpha = 0
+        
+        UIView.animate(withDuration: 0.25) { 
+            self.isHidden = false
+            self.alpha = 1
+        }
+    }
+    
+}
+
+
 
