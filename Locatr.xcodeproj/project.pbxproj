@@ -39,6 +39,7 @@
 		C06692AB1E6830E30038091F /* SlideRightTransitionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideRightTransitionManager.swift; sourceTree = "<group>"; };
 		C06692AD1E68372D0038091F /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		C06692AF1E6837F70038091F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C07CD3DC1E69F4D40038A22F /* Locatr-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Locatr-Bridging-Header.h"; sourceTree = "<group>"; };
 		DCF0A2AFC6A8AB2FF01DE7E1 /* Pods-Locatr.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Locatr.release.xcconfig"; path = "Pods/Target Support Files/Pods-Locatr/Pods-Locatr.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,7 +92,7 @@
 				C06692961E6817E20038091F /* Views */,
 				C06692971E6817E90038091F /* Controllers */,
 				C06692A51E68243A0038091F /* Constants */,
-				C06692A61E6825270038091F /* Utility */,
+				C06692A61E6825270038091F /* Supporting Files */,
 				C06692831E6816120038091F /* AppDelegate.swift */,
 				C066928A1E6816120038091F /* Assets.xcassets */,
 				C066928F1E6816120038091F /* Info.plist */,
@@ -158,13 +159,14 @@
 			name = Constants;
 			sourceTree = "<group>";
 		};
-		C06692A61E6825270038091F /* Utility */ = {
+		C06692A61E6825270038091F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C07CD3DB1E69F4C10038A22F /* Header Files */,
 				C06692AA1E6830C10038091F /* Transitions */,
 				C06692A71E6825360038091F /* Extensions */,
 			);
-			name = Utility;
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		C06692A71E6825360038091F /* Extensions */ = {
@@ -181,6 +183,14 @@
 				C06692AB1E6830E30038091F /* SlideRightTransitionManager.swift */,
 			);
 			name = Transitions;
+			sourceTree = "<group>";
+		};
+		C07CD3DB1E69F4C10038A22F /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				C07CD3DC1E69F4D40038A22F /* Locatr-Bridging-Header.h */,
+			);
+			name = "Header Files";
 			sourceTree = "<group>";
 		};
 		D5A169751856103710150742 /* Pods */ = {
@@ -227,6 +237,7 @@
 				TargetAttributes = {
 					C066927F1E6816120038091F = {
 						CreatedOnToolsVersion = 8.2.1;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -444,6 +455,7 @@
 			baseConfigurationReference = AF871AEF4CD8F74F3A1C9DFF /* Pods-Locatr.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -452,6 +464,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iwc.Locatr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Locatr/Locatr-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -461,6 +475,7 @@
 			baseConfigurationReference = DCF0A2AFC6A8AB2FF01DE7E1 /* Pods-Locatr.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -469,6 +484,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = iwc.Locatr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Locatr/Locatr-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

@@ -28,6 +28,20 @@ class LoginViewController: UIViewController {
         configureViews()
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if FBSDKAccessToken.current() == nil {
+            return
+        } else {
+            
+            print("You are logged in to Facebook")
+            
+            self.performSegue(withIdentifier: Segues.Identifiers.fromLoginToLocation, sender: self)
+        }
+        
+    }
 
     
     // MARK: UI Functions
@@ -45,10 +59,39 @@ class LoginViewController: UIViewController {
         
     }
     
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alert.addAction(okAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: Facebook login method(s)
+    
+    
+    
     // MARK: IBActions
     
     @IBAction func facebookLoginButtonPressed(_ sender: UIButton) {
-        
+        let facebookLoginManager = FBSDKLoginManager()
+        facebookLoginManager.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            
+            if error != nil {
+                let message = "Not logged in to Facebook"
+                self.showAlert(title: "", message: message)
+            } else {
+                let loginResult: FBSDKLoginManagerLoginResult = result!
+                
+                if loginResult.isCancelled {
+                    return
+                } else if loginResult.grantedPermissions.contains("email") {
+                    print("Successfully logged in to facebook with email")
+                }
+            }
+            
+        }
     }
     
     @IBAction func skipLoginButtonPressed(_ sender: UIButton) {
