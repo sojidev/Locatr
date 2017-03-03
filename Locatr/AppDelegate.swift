@@ -6,16 +6,24 @@
 //  Copyright © 2017 iwc. All rights reserved.
 //
 
+import GoogleMaps
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let GOOGLE_MAPS_API_KEY = "AIzaSyDzB1pQ3d73NbPFdb4Xhj7XWlhCNSUAl1E"
 
     var window: UIWindow?
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // Google Maps API
+        GMSServices.provideAPIKey(GOOGLE_MAPS_API_KEY)
+        
         return true
     }
 
